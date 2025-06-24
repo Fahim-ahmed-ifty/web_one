@@ -56,7 +56,7 @@ export default function Navbar() {
 					/>
 					<motion.span
 						animate={
-							isOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }
+							isOpen ? { rotate: -45, y: -8.5 } : { rotate: 0, y: 0 }
 						}
 						transition={{ duration: 0.3 }}
 						className='block w-7 h-0.5 bg-white rounded'
