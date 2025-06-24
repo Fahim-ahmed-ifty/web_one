@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import React, { useState } from 'react';
 
 const links = [
-	{ name: 'Home', href: '#' },
+	{ name: 'Home', href: '/' },
 	{ name: 'Shop', href: '#shop' },
 	{ name: 'About', href: '#about' },
 	{ name: 'Contact', href: '#contact' }
@@ -14,9 +14,9 @@ export default function Navbar() {
 
 	return (
 		<nav className='fixed top-0 left-0 w-full bg-gradient-to-r from-indigo-900 via-purple-800 to-pink-700 shadow-lg z-50'>
-			<div className='max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-4 flex items-center justify-between text-white font-semibold'>
+			<div className='max-w-8xl mx-auto px-6 md:px-12 lg:px-20 py-4 flex items-center justify-between text-white font-semibold'>
 				<a
-					href='#'
+					href='/'
 					className='text-2xl font-extrabold tracking-wide drop-shadow-md'
 				>
 					NextGen Shop
