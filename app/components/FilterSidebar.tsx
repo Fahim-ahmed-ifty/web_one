@@ -12,7 +12,13 @@ export default function FilterSidebar({
 	maxPrice: number;
 	onPriceChange: (price: number) => void;
 }) {
-	const categories = ['Bags', 'Watches', 'Shoes', 'Sunglasses'];
+	const categories = [
+		'Bags',
+		'Watches',
+		'Shoes',
+		'Sunglasses',
+		'Electronics'
+	];
 
 	return (
 		<aside className='w-full md:w-64 p-6 shadow-md space-y-6 border-r-2'>

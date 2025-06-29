@@ -7,7 +7,7 @@ const links = [
 	{ name: 'Home', href: '/' },
 	{ name: 'Shop', href: '/shop' },
 	{ name: 'About', href: '/about' },
-	{ name: 'Contact', href: '#contact' }
+	{ name: 'Contact', href: '/contact' }
 ];
 
 export default function Navbar() {
@@ -18,7 +18,7 @@ export default function Navbar() {
 		<nav
 			className={`fixed left-0 w-full z-50 transition-all duration-300 ${
 				isScrolled
-					? 'bg-white/40 shadow-md text-black'
+					? 'bg-white/40 shadow-md text-black backdrop-blur-sm'
 					: 'bg-gradient-to-r from-indigo-900 via-purple-800 to-pink-700 text-white'
 			}`}
 		>
