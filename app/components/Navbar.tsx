@@ -1,6 +1,7 @@
 'use client';
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { useState } from 'react';
+import { useHeight } from '../hooks/UseHeight';
 
 const links = [
 	{ name: 'Home', href: '/' },
@@ -11,10 +12,17 @@ const links = [
 
 export default function Navbar() {
 	const [isOpen, setIsOpen] = useState(false);
+	const isScrolled = useHeight(600);
 
 	return (
-		<nav className='fixed top-0 left-0 w-full bg-gradient-to-r from-indigo-900 via-purple-800 to-pink-700 shadow-lg z-50'>
-			<div className='max-w-8xl mx-auto px-6 md:px-12 lg:px-20 py-4 flex items-center justify-between text-white font-semibold'>
+		<nav
+			className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+				isScrolled
+					? 'bg-white/40 shadow-md text-black'
+					: 'bg-gradient-to-r from-indigo-900 via-purple-800 to-pink-700 text-white'
+			}`}
+		>
+			<div className='max-w-8xl mx-auto px-6 md:px-12 lg:px-20 py-4 flex items-center justify-between font-semibold'>
 				<a
 					href='/'
 					className='text-2xl font-extrabold tracking-wide drop-shadow-md'
@@ -23,7 +31,7 @@ export default function Navbar() {
 				</a>
 
 				{/* Desktop Links */}
-				<ul className='hidden md:flex space-x-10 text-white/90 hover:text-white transition'>
+				<ul className='hidden md:flex space-x-10  transition'>
 					{links.map(link => (
 						<li key={link.name}>
 							<a
