@@ -2,18 +2,19 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import React from 'react';
 
 type ProductProps = {
 	title: string;
 	image: string;
 	price: string;
+	buttonLabel: string;
 };
 
 export default function ProductCard({
 	title,
 	image,
-	price
+	price,
+	buttonLabel
 }: ProductProps) {
 	return (
 		<motion.div
@@ -35,7 +36,7 @@ export default function ProductCard({
 				</h3>
 				<p className='text-pink-600 text-md font-bold'>{price}</p>
 				<button className='mt-2 bg-indigo-600 text-white px-4 py-2 rounded-full hover:bg-indigo-700 transition'>
-					View Product
+					{buttonLabel}
 				</button>
 			</div>
 		</motion.div>
