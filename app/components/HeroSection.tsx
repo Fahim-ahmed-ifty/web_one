@@ -1,3 +1,5 @@
+'use client';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import React from 'react';
 import { FiShoppingCart } from 'react-icons/fi';
@@ -37,7 +39,12 @@ export default function HeroSection() {
 				</svg>
 			</div>
 
-			<div className='relative z-10 w-full md:w-1/2 max-w-2xl text-center md:text-left space-y-6 sm:space-y-8'>
+			<motion.div
+				initial={{ opacity: 0, x: -60 }}
+				whileInView={{ opacity: 1, x: 0 }}
+				transition={{ duration: 0.6, type: 'spring' }}
+				className='relative z-10 w-full md:w-1/2 max-w-2xl text-center md:text-left space-y-6 sm:space-y-8'
+			>
 				<h1 className='text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tight drop-shadow-lg'>
 					<span className='relative inline-block'>
 						Elevate Your Style
@@ -58,9 +65,14 @@ export default function HeroSection() {
 					<FiShoppingCart className='w-5 h-5 sm:w-6 sm:h-6' />
 					Shop The Collection
 				</a>
-			</div>
+			</motion.div>
 
-			<div className='relative z-10 mt-10 md:mt-0 w-full md:w-1/2 flex justify-center'>
+			<motion.div
+				initial={{ opacity: 0, x: 60 }}
+				whileInView={{ opacity: 1, x: 0 }}
+				transition={{ duration: 0.6, type: 'spring' }}
+				className='relative z-10 mt-10 md:mt-0 w-full md:w-1/2 flex justify-center'
+			>
 				<div className='relative w-[280px] h-[380px] sm:w-[320px] sm:h-[420px] md:w-[380px] md:h-[500px] lg:w-[460px] lg:h-[580px] xl:w-[520px] xl:h-[640px] rounded-3xl overflow-hidden shadow-2xl'>
 					<Image
 						src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80'
@@ -70,7 +82,7 @@ export default function HeroSection() {
 						sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 					/>
 				</div>
-			</div>
+			</motion.div>
 		</section>
 	);
 }

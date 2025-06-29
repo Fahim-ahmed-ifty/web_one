@@ -18,7 +18,7 @@ export default function ProductCard({
 	return (
 		<motion.div
 			whileHover={{ scale: 1.03 }}
-			className='bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300'
+			className='bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 flex flex-col'
 		>
 			<div className='relative w-full h-64'>
 				<Image
@@ -29,7 +29,7 @@ export default function ProductCard({
 					sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 				/>
 			</div>
-			<div className='p-4 text-center space-y-2'>
+			<div className='p-4 text-center space-y-2 flex-grow'>
 				<h3 className='text-lg font-semibold text-gray-800'>
 					{title}
 				</h3>
