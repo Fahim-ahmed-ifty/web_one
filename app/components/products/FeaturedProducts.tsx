@@ -15,7 +15,7 @@ type Props = {
 
 export default function FeaturedProducts({ products }: Props) {
 	return (
-		<div className='md:ml-12'>
+		<div className='md:ml-12 mb-16'>
 			<h2 className='flex text-2xl lg:text-4xl font-bold mb-6 text-gray-800 justify-center'>
 				Featured Products
 			</h2>
@@ -24,10 +24,10 @@ export default function FeaturedProducts({ products }: Props) {
 				{products.map(product => (
 					<ProductCard
 						key={product.id}
-						title={product.title}
 						image={product.image}
 						price={product.price}
 						buttonLabel='Shop Now'
+						{...{ title: product.title }}
 					/>
 				))}
 			</div>

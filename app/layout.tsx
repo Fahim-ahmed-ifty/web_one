@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import SideCategoryNavbar from './components/SideCategoryNavbar';
 import './globals.css';
@@ -31,8 +32,8 @@ export default function RootLayout({
 			>
 				<Navbar />
 				<SideCategoryNavbar />
-				<div className='pt-16'>{children}</div>
-				<div className='h-[40rem]'></div>
+				<div className='pt-16 md:pt-28'>{children}</div>
+				<Footer />
 			</body>
 		</html>
 	);
