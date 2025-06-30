@@ -2,6 +2,9 @@ import { redirect } from 'next/navigation';
 import { getCurrentUser } from '../lib/actions';
 import LoginForm from './LoginForm';
 
+// Force dynamic rendering since this page uses cookies
+export const dynamic = 'force-dynamic';
+
 export default async function LoginPage() {
 	const user = await getCurrentUser();
 

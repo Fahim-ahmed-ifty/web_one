@@ -2,6 +2,9 @@ import { redirect } from 'next/navigation';
 import { getCurrentUser } from '../lib/actions';
 import RegisterForm from './RegisterForm';
 
+// Force dynamic rendering since this page uses cookies
+export const dynamic = 'force-dynamic';
+
 export default async function RegisterPage() {
 	const user = await getCurrentUser();
 
