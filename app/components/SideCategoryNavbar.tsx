@@ -44,7 +44,7 @@ const SideCategoryNavbar = () => {
 		<>
 			{/* Desktop full-width navbar */}
 			<div
-				className={`fixed top-16 left-0 w-full z-40 hidden md:block transition-all duration-300 ${
+				className={`fixed top-18 left-0 w-full z-40 hidden md:block transition-all duration-300 ${
 					isScrolled
 						? 'bg-white/40 shadow-md backdrop-blur-sm border-b border-gray-200/50'
 						: 'bg-gradient-to-r from-indigo-900/80 via-purple-800/80 to-pink-700/80 backdrop-blur-sm border-b border-white/20'
