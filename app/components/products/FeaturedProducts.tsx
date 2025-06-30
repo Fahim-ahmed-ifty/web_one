@@ -13,7 +13,7 @@ type Props = {
 	products: Product[];
 };
 
-export default function FeaturedProducts({ products }: Props) {
+const FeaturedProducts = ({ products }: Props) => {
 	return (
 		<div className='md:ml-12 mb-16'>
 			<h2 className='flex text-2xl lg:text-4xl font-bold mb-6 text-gray-800 justify-center'>
@@ -33,4 +33,6 @@ export default function FeaturedProducts({ products }: Props) {
 			</div>
 		</div>
 	);
-}
+};
+
+export default FeaturedProducts;

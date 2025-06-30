@@ -20,11 +20,11 @@ export const metadata: Metadata = {
 	description: 'Developed by Fahim Ahmed Ifty'
 };
 
-export default function RootLayout({
+const RootLayout = ({
 	children
 }: Readonly<{
 	children: React.ReactNode;
-}>) {
+}>) => {
 	return (
 		<html lang='en'>
 			<body
@@ -32,9 +32,11 @@ export default function RootLayout({
 			>
 				<Navbar />
 				<SideCategoryNavbar />
-				<div className='pt-16 md:pt-28'>{children}</div>
+				<div className='pt-16 md:pt-20'>{children}</div>
 				<Footer />
 			</body>
 		</html>
 	);
-}
+};
+
+export default RootLayout;

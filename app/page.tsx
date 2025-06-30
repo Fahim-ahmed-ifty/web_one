@@ -5,7 +5,7 @@ import HeroSection from './components/HeroSection';
 import FeaturedProducts from './components/products/FeaturedProducts';
 import { featuredProducts } from './lib/featuredProducts';
 
-export default function HomePage() {
+const HomePage = () => {
 	const [selectedCategories] = useState<string[]>([]);
 
 	// Optional: if you want to add categories to your featured products
@@ -23,4 +23,6 @@ export default function HomePage() {
 			<FeaturedProducts products={filteredProducts} />
 		</div>
 	);
-}
+};
+
+export default HomePage;

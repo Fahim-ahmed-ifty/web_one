@@ -5,11 +5,12 @@ import FilterSidebar from '../components/FilterSidebar';
 import ProductCard from '../components/products/ProductCard';
 import { products } from '../lib/shopProducts';
 
-export default function ShopPage() {
+const ShopPage = () => {
 	const [selectedCategories, setSelectedCategories] = useState<
 		string[]
 	>([]);
-	const [maxPrice, setMaxPrice] = useState<number>(500);
+	const [minPrice, setMinPrice] = useState<number>(0);
+	const [maxPrice, setMaxPrice] = useState<number>(1000);
 
 	const handleCategoryChange = (category: string) => {
 		setSelectedCategories(prev =>
@@ -23,7 +24,8 @@ export default function ShopPage() {
 		const matchCategory =
 			selectedCategories.length === 0 ||
 			selectedCategories.includes(product.category);
-		const matchPrice = product.price <= maxPrice;
+		const matchPrice =
+			product.price >= minPrice && product.price <= maxPrice;
 		return matchCategory && matchPrice;
 	});
 
@@ -32,8 +34,10 @@ export default function ShopPage() {
 			<FilterSidebar
 				selectedCategories={selectedCategories}
 				onCategoryChange={handleCategoryChange}
+				minPrice={minPrice}
 				maxPrice={maxPrice}
-				onPriceChange={setMaxPrice}
+				onMinPriceChange={setMinPrice}
+				onMaxPriceChange={setMaxPrice}
 			/>
 			<div className='flex-1'>
 				<h2 className='text-3xl font-bold mb-6 text-gray-800'>
@@ -53,4 +57,6 @@ export default function ShopPage() {
 			</div>
 		</div>
 	);
-}
+};
+
+export default ShopPage;

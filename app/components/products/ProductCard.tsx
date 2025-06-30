@@ -10,12 +10,12 @@ type ProductProps = {
 	buttonLabel: string;
 };
 
-export default function ProductCard({
+const ProductCard = ({
 	title,
 	image,
 	price,
 	buttonLabel
-}: ProductProps) {
+}: ProductProps) => {
 	return (
 		<motion.div
 			whileHover={{ scale: 1.03 }}
@@ -41,4 +41,6 @@ export default function ProductCard({
 			</div>
 		</motion.div>
 	);
-}
+};
+
+export default ProductCard;

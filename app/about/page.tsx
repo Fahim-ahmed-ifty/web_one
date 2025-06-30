@@ -1,7 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
 
-export default function AboutPage() {
+const AboutPage = () => {
 	return (
 		<div className='text-gray-800'>
 			<section className='relative bg-gradient-to-r from-indigo-800 via-purple-700 to-pink-600 text-white py-24 px-6'>
@@ -33,9 +33,9 @@ export default function AboutPage() {
 					>
 						<h2 className='text-3xl font-bold mb-4'>Who We Are</h2>
 						<p className='text-lg leading-relaxed'>
-							We’re a passionate team of dreamers, designers, and
+							We're a passionate team of dreamers, designers, and
 							developers. From building seamless digital experiences
-							to curating the latest trends — we’re here to elevate
+							to curating the latest trends — we're here to elevate
 							your everyday shopping journey.
 						</p>
 					</motion.div>
@@ -93,7 +93,7 @@ export default function AboutPage() {
 					Join Us on the Journey
 				</h2>
 				<p className='text-lg max-w-xl mx-auto mb-6'>
-					Whether you’re a customer or collaborator, we’d love to have
+					Whether you're a customer or collaborator, we'd love to have
 					you on board.
 				</p>
 				<a
@@ -105,4 +105,6 @@ export default function AboutPage() {
 			</section>
 		</div>
 	);
-}
+};
+
+export default AboutPage;

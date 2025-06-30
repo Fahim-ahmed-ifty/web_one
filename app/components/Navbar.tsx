@@ -10,7 +10,7 @@ const links = [
 	{ name: 'Contact', href: '/contact' }
 ];
 
-export default function Navbar() {
+const Navbar = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const isScrolled = useHeight(600);
 
@@ -98,4 +98,6 @@ export default function Navbar() {
 			</AnimatePresence>
 		</nav>
 	);
-}
+};
+
+export default Navbar;

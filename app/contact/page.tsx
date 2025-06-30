@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
-export default function ContactPage() {
+const ContactPage = () => {
 	const [formData, setFormData] = useState({
 		name: '',
 		email: '',
@@ -10,17 +10,19 @@ export default function ContactPage() {
 	});
 	const [submitted, setSubmitted] = useState(false);
 
-	function handleChange(
+	const handleChange = (
 		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-	) {
-		setFormData({ ...formData, [e.target.name]: e.target.value });
-	}
+	) => {
+		const { name, value } = e.target;
+		setFormData(prev => ({ ...prev, [name]: value }));
+	};
 
-	function handleSubmit(e: React.FormEvent) {
+	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 		setSubmitted(true);
 		// Normally here you would handle form submission to backend or email service
-	}
+		console.log('Form submitted:', formData);
+	};
 
 	return (
 		<div className='min-h-screen bg-gradient-to-r from-indigo-800 via-purple-700 to-pink-600  py-24 px-6 flex flex-col items-center text-black'>
@@ -34,7 +36,7 @@ export default function ContactPage() {
 					Get in Touch
 				</h1>
 				<p className='mb-8 text-center text-lg opacity-90'>
-					We’d love to hear from you! Whether it’s a question,
+					We'd love to hear from you! Whether it's a question,
 					feedback, or a collaboration idea.
 				</p>
 
@@ -114,4 +116,6 @@ export default function ContactPage() {
 			</motion.div>
 		</div>
 	);
-}
+};
+
+export default ContactPage;

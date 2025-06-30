@@ -14,7 +14,7 @@ type StarRatingProps = {
 	rating: number;
 };
 
-function StarRating({ rating }: StarRatingProps) {
+const StarRating = ({ rating }: StarRatingProps) => {
 	const stars = [];
 	for (let i = 1; i <= 5; i++) {
 		if (i <= rating) {
@@ -28,44 +28,33 @@ function StarRating({ rating }: StarRatingProps) {
 		}
 	}
 	return <div className='flex gap-1'>{stars}</div>;
-}
+};
 
-export default function HeroSection() {
+const HeroSection = () => {
 	const [timeLeft, setTimeLeft] = useState(0);
 
 	useEffect(() => {
-		const targetTime = new Date().getTime() + 24 * 60 * 60 * 1000;
-		const interval = setInterval(() => {
-			const now = new Date().getTime();
-			const diff = targetTime - now;
-			if (diff <= 0) {
-				clearInterval(interval);
-				setTimeLeft(0);
-			} else {
-				setTimeLeft(diff);
-			}
+		const timer = setInterval(() => {
+			setTimeLeft(prev => (prev > 0 ? prev - 1000 : 0));
 		}, 1000);
-		return () => clearInterval(interval);
+
+		return () => clearInterval(timer);
 	}, []);
 
-	function formatTime(ms: number) {
-		if (ms <= 0) return '00:00:00';
-		const totalSeconds = Math.floor(ms / 1000);
-		const h = String(Math.floor(totalSeconds / 3600)).padStart(
-			2,
-			'0'
-		);
-		const m = String(Math.floor((totalSeconds % 3600) / 60)).padStart(
-			2,
-			'0'
-		);
-		const s = String(totalSeconds % 60).padStart(2, '0');
-		return `${h}:${m}:${s}`;
-	}
+	const formatTime = (ms: number) => {
+		const seconds = Math.floor(ms / 1000);
+		const minutes = Math.floor(seconds / 60);
+		const hours = Math.floor(minutes / 60);
+		const days = Math.floor(hours / 24);
+
+		return `${days}d ${hours % 24}h ${minutes % 60}m ${
+			seconds % 60
+		}s`;
+	};
 
 	return (
 		<section className='min-h-screen flex flex-col-reverse md:flex-row items-center justify-between bg-gradient-to-tr from-indigo-900 via-purple-800 to-pink-700 px-4 sm:px-6 md:px-12 lg:px-24 xl:px-32 text-white relative overflow-hidden py-12'>
-			<div className='absolute top-0 left-0 w-full h-full pointer-events-none'>
+			<div className='absolute top-0 left-0 w-full min-h-screen pointer-events-none'>
 				<svg
 					className='w-full h-full'
 					xmlns='http://www.w3.org/2000/svg'
@@ -122,7 +111,7 @@ export default function HeroSection() {
 				</p>
 				<div className='flex flex-col sm:flex-row items-center sm:items-center gap-4 mt-4 max-w-md mx-auto md:mx-0'>
 					<a
-						href='#products'
+						href='/shop'
 						className='inline-flex items-center justify-center gap-3 bg-pink-400 hover:bg-pink-500 transition rounded-full px-8 sm:px-14 lg:px-20 py-3 sm:py-4 font-semibold shadow-lg shadow-pink-400/50 text-white text-base sm:text-lg lg:text-xl whitespace-nowrap'
 					>
 						<ShoppingCart className='w-5 h-5 sm:w-6 sm:h-6' />
@@ -185,4 +174,6 @@ export default function HeroSection() {
 			`}</style>
 		</section>
 	);
-}
+};
+
+export default HeroSection;
