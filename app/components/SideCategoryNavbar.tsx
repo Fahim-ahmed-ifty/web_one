@@ -10,6 +10,7 @@ import {
 import { useState } from 'react';
 import { useHeight } from '../hooks/UseHeight';
 import categories from '../lib/categories';
+import Button from './Button';
 
 const SideCategoryNavbar = () => {
 	const [open, setOpen] = useState(false);
@@ -55,30 +56,34 @@ const SideCategoryNavbar = () => {
 						{/* Categories in the middle */}
 						<div className='flex items-center space-x-8'>
 							{/* Hamburger menu for desktop */}
-							<button
+							<Button
 								onClick={() => setOpen(true)}
-								className={`flex items-center gap-2 transition-all duration-300 font-medium text-sm hover:scale-105 ${
+								variant='ghost'
+								size='sm'
+								leftIcon={<Menu />}
+								rightIcon={<ChevronDown />}
+								className={`transition-all duration-300 font-medium text-sm hover:scale-105 ${
 									isScrolled
 										? 'text-gray-800 hover:text-pink-600'
 										: 'text-white hover:text-pink-400'
 								}`}
 							>
-								<Menu className='w-5 h-5 transition-transform duration-300 hover:rotate-90' />
 								<span>All Categories</span>
-								<ChevronDown className='w-4 h-4 transition-transform duration-300' />
-							</button>
+							</Button>
 							{desktopCategories.map((cat, index) => (
 								<div key={cat.title} className='relative group'>
-									<button
-										className={`flex items-center gap-1 transition-all duration-300 font-medium text-sm hover:scale-105 ${
+									<Button
+										variant='ghost'
+										size='sm'
+										rightIcon={<ChevronDown />}
+										className={`transition-all duration-300 font-medium text-sm hover:scale-105 ${
 											isScrolled
 												? 'text-gray-800 hover:text-pink-600'
 												: 'text-white hover:text-pink-400'
 										}`}
 									>
 										{cat.title}
-										<ChevronDown className='w-3 h-3 transition-transform duration-300 group-hover:rotate-180' />
-									</button>
+									</Button>
 									{/* Enhanced Dropdown for subcategories */}
 									<div className='absolute top-full left-1/2 transform -translate-x-1/2 mt-3 w-64 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 z-50 border border-gray-100/50 overflow-hidden'>
 										{/* Dropdown arrow */}
@@ -135,12 +140,15 @@ const SideCategoryNavbar = () => {
 			</div>
 
 			{/* Mobile side panel button */}
-			<button
+			<Button
 				onClick={() => setOpen(true)}
+				variant='ghost'
+				size='sm'
+				leftIcon={<ArrowRight />}
 				className='fixed top-24 lg:top-22 -translate-y-1/2 left-0 z-50 bg-gradient-to-r from-pink-500 to-purple-600 text-white px-4 py-2 rounded-r-xl flex items-center gap-2 transition-all duration-300 hover:scale-105 hover:shadow-lg md:hidden'
 			>
-				<ArrowRight className='w-4 h-4 transition-transform duration-300' />
-			</button>
+				<span className='sr-only'>Open Categories</span>
+			</Button>
 
 			{/* Enhanced Side panel for both mobile and desktop */}
 			<div
@@ -157,12 +165,15 @@ const SideCategoryNavbar = () => {
 								Browse our complete collection
 							</p>
 						</div>
-						<button
+						<Button
 							onClick={() => setOpen(false)}
+							variant='ghost'
+							size='sm'
+							leftIcon={<X />}
 							className='text-white hover:text-pink-200 transition-all duration-300 hover:scale-110 p-2 rounded-full hover:bg-white/20'
 						>
-							<X className='w-6 h-6' />
-						</button>
+							<span className='sr-only'>Close</span>
+						</Button>
 					</div>
 				</div>
 
@@ -221,7 +232,7 @@ const SideCategoryNavbar = () => {
 
 									{/* Show/hide more items button */}
 									{hasMoreItems && (
-										<button
+										<Button
 											onClick={e => {
 												e.stopPropagation();
 												if (isExpanded) {
@@ -230,20 +241,23 @@ const SideCategoryNavbar = () => {
 													showAllSubcategories(cat.title);
 												}
 											}}
-											className='text-xs text-pink-500 hover:text-pink-600 cursor-pointer transition-colors duration-300 pt-2 flex items-center gap-1 hover:scale-105'
+											variant='ghost'
+											size='sm'
+											leftIcon={
+												isExpanded ? (
+													<ChevronDown />
+												) : (
+													<ChevronRight />
+												)
+											}
+											className='text-pink-500 hover:text-pink-600 cursor-pointer transition-colors duration-300 pt-2 flex items-center gap-1 hover:scale-105'
 										>
 											{isExpanded ? (
-												<>
-													<ChevronDown className='w-3 h-3' />
-													Show Less
-												</>
+												<>Show Less</>
 											) : (
-												<>
-													+{cat.sub.length - 6} more items
-													<ChevronRight className='w-3 h-3' />
-												</>
+												<>+{cat.sub.length - 6} more items</>
 											)}
-										</button>
+										</Button>
 									)}
 								</div>
 							</div>

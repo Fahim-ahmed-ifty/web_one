@@ -9,6 +9,7 @@ import {
 	Twitter
 } from 'lucide-react';
 import React from 'react';
+import Button from './Button';
 
 const Footer = () => {
 	const currentYear = new Date().getFullYear();
@@ -142,9 +143,13 @@ const Footer = () => {
 								placeholder='Enter your email'
 								className='flex-1 px-3 py-2 text-sm bg-white/10 border border-white/20 rounded-l-lg focus:outline-none focus:border-pink-400 placeholder-white/60'
 							/>
-							<button className='px-4 py-2 bg-pink-400 hover:bg-pink-500 transition-colors duration-300 rounded-r-lg'>
-								<ArrowRight className='w-4 h-4' />
-							</button>
+							<Button
+								variant='primary'
+								size='sm'
+								leftIcon={<ArrowRight className='w-4 h-4' />}
+							>
+								<span className='sr-only'>Submit</span>
+							</Button>
 						</div>
 
 						{/* Contact Info */}

@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import Button from '../components/Button';
 import { useAuth } from '../hooks/useAuth';
 import { submitContactForm } from '../lib/actions';
 
@@ -71,12 +72,15 @@ const ContactPage = () => {
 						You must be logged in to send us a message.
 					</p>
 					<div className='space-y-4'>
-						<button
+						<Button
 							onClick={() => router.push('/login')}
-							className='w-full bg-pink-500 hover:bg-pink-600 transition rounded-full py-3 text-white font-semibold text-lg shadow-md cursor-pointer'
+							variant='primary'
+							size='md'
+							fullWidth
+							className='font-semibold text-lg shadow-md'
 						>
 							Login
-						</button>
+						</Button>
 						<p className='text-sm opacity-80'>
 							Don't have an account?{' '}
 							<button
@@ -174,13 +178,16 @@ const ContactPage = () => {
 						></textarea>
 					</div>
 
-					<button
+					<Button
 						type='submit'
-						disabled={isSubmitting}
-						className='w-full bg-pink-500 hover:bg-pink-600 transition rounded-full py-3 text-white font-semibold text-lg shadow-md cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed'
+						variant='primary'
+						size='md'
+						loading={isSubmitting}
+						fullWidth
+						className='font-semibold text-lg shadow-md'
 					>
 						{isSubmitting ? 'Sending...' : 'Send Message'}
-					</button>
+					</Button>
 				</form>
 
 				{submitted && (

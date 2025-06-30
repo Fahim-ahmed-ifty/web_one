@@ -3,6 +3,7 @@
 import { Eye, EyeOff, Lock, Mail } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import Button from '../components/Button';
 import { loginUser } from '../lib/actions';
 
 export default function LoginForm() {
@@ -106,13 +107,16 @@ export default function LoginForm() {
 				</div>
 			</div>
 
-			<button
+			<Button
 				type='submit'
-				disabled={isLoading}
-				className='w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white font-medium py-3 px-4 rounded-lg hover:from-pink-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-offset-2 focus:ring-offset-transparent transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed'
+				variant='primary'
+				size='md'
+				loading={isLoading}
+				fullWidth
+				className='font-medium rounded-lg'
 			>
 				{isLoading ? 'Signing in...' : 'Sign In'}
-			</button>
+			</Button>
 		</form>
 	);
 }

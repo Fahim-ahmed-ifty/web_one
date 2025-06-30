@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import { useHeight } from '../hooks/UseHeight';
 import { useAuth } from '../hooks/useAuth';
 import { logoutUser } from '../lib/actions';
+import Button from './Button';
 
 const links = [
 	{ name: 'Home', href: '/' },
@@ -77,7 +78,7 @@ const Navbar = () => {
 												{user.name || user.email}
 											</span>
 										</div>
-										<button
+										<Button
 											onClick={handleLogout}
 											className={`px-3 py-2 rounded-lg font-medium transition-all duration-300 hover:scale-105 flex items-center space-x-2 ${
 												isScrolled
@@ -87,7 +88,7 @@ const Navbar = () => {
 										>
 											<LogOut className='w-4 h-4' />
 											<span>Logout</span>
-										</button>
+										</Button>
 									</div>
 								) : (
 									<>
@@ -182,7 +183,7 @@ const Navbar = () => {
 													{user.name || user.email}
 												</span>
 											</div>
-											<button
+											<Button
 												onClick={() => {
 													handleLogout();
 													setIsOpen(false);
@@ -191,7 +192,7 @@ const Navbar = () => {
 											>
 												<LogOut className='w-4 h-4' />
 												<span>Logout</span>
-											</button>
+											</Button>
 										</>
 									) : (
 										<>

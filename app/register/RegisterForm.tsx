@@ -3,6 +3,7 @@
 import { Eye, EyeOff, Lock, Mail, User } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import Button from '../components/Button';
 import { registerUser } from '../lib/actions';
 
 export default function RegisterForm() {
@@ -116,27 +117,32 @@ export default function RegisterForm() {
 						className='w-full pl-10 pr-12 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent transition'
 						placeholder='Create a password (min 6 characters)'
 					/>
-					<button
+					<Button
 						type='button'
+						variant='ghost'
+						size='sm'
+						className='absolute right-3 top-1/2 transform -translate-y-1/2'
 						onClick={() => setShowPassword(!showPassword)}
-						className='absolute right-3 top-1/2 transform -translate-y-1/2 text-white/50 hover:text-white/70 transition'
 					>
 						{showPassword ? (
 							<EyeOff className='w-5 h-5' />
 						) : (
 							<Eye className='w-5 h-5' />
 						)}
-					</button>
+					</Button>
 				</div>
 			</div>
 
-			<button
+			<Button
 				type='submit'
-				disabled={isLoading}
-				className='w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white font-medium py-3 px-4 rounded-lg hover:from-pink-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-offset-2 focus:ring-offset-transparent transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed'
+				variant='primary'
+				size='md'
+				loading={isLoading}
+				fullWidth
+				className='font-medium rounded-lg'
 			>
 				{isLoading ? 'Creating account...' : 'Create Account'}
-			</button>
+			</Button>
 		</form>
 	);
 }
