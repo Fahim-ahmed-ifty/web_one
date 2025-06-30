@@ -1,6 +1,4 @@
-import React, { forwardRef } from 'react';
-// Make sure to install 'clsx' with: pnpm add clsx
-import clsx from 'clsx';
+import React from 'react';
 
 export type ButtonVariant =
 	| 'primary'
@@ -30,7 +28,7 @@ const variantStyles: Record<ButtonVariant, string> = {
 	secondary: 'bg-purple-600 text-white hover:bg-purple-700',
 	outline:
 		'bg-transparent border border-pink-500 text-pink-500 hover:bg-pink-50',
-	ghost: 'bg-transparent text-pink-500 hover:bg-pink-50',
+	ghost: 'bg-transparent text-black hover:bg-pink-50',
 	danger: 'bg-red-500 text-white hover:bg-red-600'
 };
 
@@ -62,45 +60,43 @@ const Spinner = () => (
 	</svg>
 );
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-	(
-		{
-			variant = 'primary',
-			size = 'md',
-			loading = false,
-			fullWidth = false,
-			leftIcon,
-			rightIcon,
-			className = '',
-			children,
-			disabled,
-			...props
-		},
-		ref
-	) => {
-		return (
-			<button
-				ref={ref}
-				className={clsx(
-					baseStyles,
-					variantStyles[variant],
-					sizeStyles[size],
-					fullWidth && 'w-full',
-					className
-				)}
-				disabled={disabled || loading}
-				aria-busy={loading}
-				aria-disabled={disabled || loading}
-				{...props}
-			>
-				{loading && <Spinner />}
-				{leftIcon && <span className='mr-2'>{leftIcon}</span>}
-				{children}
-				{rightIcon && <span className='ml-2'>{rightIcon}</span>}
-			</button>
-		);
-	}
-);
+const Button = ({
+	variant = 'primary',
+	size = 'md',
+	loading = false,
+	fullWidth = false,
+	leftIcon,
+	rightIcon,
+	className = '',
+	children,
+	disabled,
+	...props
+}: ButtonProps) => {
+	const buttonClassName = [
+		baseStyles,
+		variantStyles[variant],
+		sizeStyles[size],
+		fullWidth ? 'w-full' : '',
+		className
+	]
+		.filter(Boolean)
+		.join(' ');
+
+	return (
+		<button
+			className={buttonClassName}
+			disabled={disabled || loading}
+			aria-busy={loading}
+			aria-disabled={disabled || loading}
+			{...props}
+		>
+			{loading && <Spinner />}
+			{leftIcon && <span className='mr-2'>{leftIcon}</span>}
+			{children}
+			{rightIcon && <span className='ml-2'>{rightIcon}</span>}
+		</button>
+	);
+};
 Button.displayName = 'Button';
 
 export default Button;

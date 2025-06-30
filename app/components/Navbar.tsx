@@ -1,11 +1,11 @@
 'use client';
+import { useAuth } from '@/hooks/useAuth';
+import { useHeight } from '@/hooks/UseHeight';
 import { AnimatePresence, motion } from 'framer-motion';
 import { LogOut, User } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
-import { useHeight } from '../hooks/UseHeight';
-import { useAuth } from '../hooks/useAuth';
-import { logoutUser } from '../lib/actions';
+import React, { useEffect, useState } from 'react';
+import { logoutUser } from '../../action/actions';
 import Button from './Button';
 
 const links = [
@@ -19,7 +19,12 @@ const Navbar = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const { user, isLoading, refreshUser } = useAuth();
 	const isScrolled = useHeight(600);
+	const [isMounted, setIsMounted] = useState(false);
 	const router = useRouter();
+
+	useEffect(() => {
+		setIsMounted(true);
+	}, []);
 
 	const handleLogout = async () => {
 		try {
@@ -38,7 +43,7 @@ const Navbar = () => {
 	return (
 		<nav
 			className={`fixed left-0 w-full z-50 transition-all duration-300 ${
-				isScrolled
+				isMounted && isScrolled
 					? 'bg-white/40 shadow-md text-black backdrop-blur-sm'
 					: 'bg-gradient-to-r from-indigo-900 via-purple-800 to-pink-700 text-white'
 			}`}
@@ -81,7 +86,7 @@ const Navbar = () => {
 										<Button
 											onClick={handleLogout}
 											className={`px-3 py-2 rounded-lg font-medium transition-all duration-300 hover:scale-105 flex items-center space-x-2 ${
-												isScrolled
+												isMounted && isScrolled
 													? 'text-gray-700 hover:text-black border border-gray-300 hover:border-gray-500'
 													: 'text-white hover:text-pink-200 border border-white/30 hover:border-white/50'
 											}`}
@@ -95,7 +100,7 @@ const Navbar = () => {
 										<a
 											href='/login'
 											className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:scale-105 ${
-												isScrolled
+												isMounted && isScrolled
 													? 'text-gray-700 hover:text-black border border-gray-300 hover:border-gray-500'
 													: 'text-white hover:text-pink-200 border border-white/30 hover:border-white/50'
 											}`}
@@ -105,7 +110,7 @@ const Navbar = () => {
 										<a
 											href='/register'
 											className={`px-6 py-2 rounded-lg font-medium transition-all duration-300 hover:scale-105 ${
-												isScrolled
+												isMounted && isScrolled
 													? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg hover:shadow-xl'
 													: 'bg-white/20 backdrop-blur-sm text-white border border-white/30 hover:bg-white/30'
 											}`}

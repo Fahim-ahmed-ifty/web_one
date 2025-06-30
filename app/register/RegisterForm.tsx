@@ -3,8 +3,8 @@
 import { Eye, EyeOff, Lock, Mail, User } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { registerUser } from '../../action/actions';
 import Button from '../components/Button';
-import { registerUser } from '../lib/actions';
 
 export default function RegisterForm() {
 	const [formData, setFormData] = useState({

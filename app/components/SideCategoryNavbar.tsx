@@ -1,5 +1,6 @@
 'use client';
 
+import { useHeight } from '@/hooks/UseHeight';
 import {
 	ArrowRight,
 	ChevronDown,
@@ -7,17 +8,21 @@ import {
 	Menu,
 	X
 } from 'lucide-react';
-import { useState } from 'react';
-import { useHeight } from '../hooks/UseHeight';
-import categories from '../lib/categories';
+import { useEffect, useState } from 'react';
+import categories from '../../constants/categories';
 import Button from './Button';
 
 const SideCategoryNavbar = () => {
 	const [open, setOpen] = useState(false);
+	const [isMounted, setIsMounted] = useState(false);
 	const [expandedCategories, setExpandedCategories] = useState<
 		Set<string>
 	>(new Set());
 	const isScrolled = useHeight(500); // Slightly different threshold than main navbar
+
+	useEffect(() => {
+		setIsMounted(true);
+	}, []);
 
 	// Split categories: first 5 for desktop navbar, rest for sidebar
 	const desktopCategories = categories.slice(0, 5);
@@ -46,8 +51,8 @@ const SideCategoryNavbar = () => {
 			{/* Desktop full-width navbar */}
 			<div
 				className={`fixed top-18 left-0 w-full z-40 hidden md:block transition-all duration-300 ${
-					isScrolled
-						? 'bg-white/40 shadow-md backdrop-blur-sm border-b border-gray-200/50'
+					isMounted && isScrolled
+						? 'bg-white/70 shadow-md backdrop-blur-md border-b border-gray-200/50 '
 						: 'bg-gradient-to-r from-indigo-900/80 via-purple-800/80 to-pink-700/80 backdrop-blur-sm border-b border-white/20'
 				}`}
 			>
@@ -63,31 +68,34 @@ const SideCategoryNavbar = () => {
 								leftIcon={<Menu />}
 								rightIcon={<ChevronDown />}
 								className={`transition-all duration-300 font-medium text-sm hover:scale-105 ${
-									isScrolled
-										? 'text-gray-800 hover:text-pink-600'
-										: 'text-white hover:text-pink-400'
+									isMounted && isScrolled
+										? 'text-gray-800 hover:text-purple-800'
+										: 'text-white hover:text-purple-800'
 								}`}
 							>
 								<span>All Categories</span>
 							</Button>
 							{desktopCategories.map((cat, index) => (
-								<div key={cat.title} className='relative group'>
+								<div
+									key={cat.title}
+									className='relative group shadow'
+								>
 									<Button
 										variant='ghost'
 										size='sm'
 										rightIcon={<ChevronDown />}
 										className={`transition-all duration-300 font-medium text-sm hover:scale-105 ${
-											isScrolled
-												? 'text-gray-800 hover:text-pink-600'
-												: 'text-white hover:text-pink-400'
+											isMounted && isScrolled
+												? 'text-gray-800 hover:text-purple-800'
+												: 'text-white hover:text-purple-800'
 										}`}
 									>
 										{cat.title}
 									</Button>
 									{/* Enhanced Dropdown for subcategories */}
-									<div className='absolute top-full left-1/2 transform -translate-x-1/2 mt-3 w-64 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 z-50 border border-gray-100/50 overflow-hidden'>
+									<div className='absolute top-full left-1/2 transform -translate-x-1/2 mt-3 w-64 bg-gray-200/90 backdrop-blur-sm shadow-xl  rounded-2xl  opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 border border-gray-100/50 overflow-hidden'>
 										{/* Dropdown arrow */}
-										<div className='absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white/95 rotate-45 border-l border-t border-gray-100/50'></div>
+										<div className='absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white/95 backdrop-blur-2xl rotate-45 border-l border-t border-gray-100/50'></div>
 
 										{/* Header */}
 										<div className='bg-gradient-to-r from-pink-500 to-purple-600 text-white px-4 py-3'>
@@ -106,7 +114,7 @@ const SideCategoryNavbar = () => {
 													<a
 														key={sub}
 														href='#'
-														className='block px-4 py-3 text-sm text-gray-700 hover:text-pink-600 hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 transition-all duration-300 border-l-2 border-transparent hover:border-pink-500 group/item'
+														className='block px-4 py-3 text-sm text-gray-700 hover:text-purple-800 hover:bg-gradient-to-r hover:from-purple-50 hover:to-purple-50 transition-all duration-300 border-l-2 border-transparent hover:border-purple-600 group/item'
 														style={{
 															animationDelay: `${subIndex * 50}ms`
 														}}
@@ -126,7 +134,7 @@ const SideCategoryNavbar = () => {
 										<div className='bg-gray-50/50 px-4 py-2 border-t border-gray-100/50'>
 											<a
 												href='#'
-												className='text-xs text-pink-600 hover:text-pink-700 font-medium transition-colors duration-300'
+												className='text-xs text-purple-800 hover:text-purple-800 font-medium transition-colors duration-300'
 											>
 												View All {cat.title} →
 											</a>

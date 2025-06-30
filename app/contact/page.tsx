@@ -1,10 +1,10 @@
 'use client';
+import { useAuth } from '@/hooks/useAuth';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { submitContactForm } from '../../action/actions';
 import Button from '../components/Button';
-import { useAuth } from '../hooks/useAuth';
-import { submitContactForm } from '../lib/actions';
 
 const ContactPage = () => {
 	const { user, isLoading, isAuthenticated } = useAuth();
@@ -49,7 +49,7 @@ const ContactPage = () => {
 	// Show loading state
 	if (isLoading) {
 		return (
-			<div className='min-h-screen bg-gradient-to-r from-indigo-800 via-purple-700 to-pink-600 flex items-center justify-center'>
+			<div className='min-h-screen bg-gradient-to-r from-indigo-800 via-purple-700 to-pink-600 flex items-center justify-center z-40'>
 				<div className='text-white text-xl'>Loading...</div>
 			</div>
 		);
@@ -63,15 +63,38 @@ const ContactPage = () => {
 					initial={{ opacity: 0, y: 50 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.7 }}
-					className='max-w-2xl w-full bg-white bg-opacity-10 backdrop-blur-md rounded-xl p-10 shadow-lg text-center'
+					className='max-w-2xl w-full bg-white bg-opacity-10 backdrop-blur-md rounded-xl p-10 shadow-lg text-center flex flex-col items-center'
 				>
-					<h1 className='text-4xl font-bold mb-6 text-center'>
+					{/* Illustration */}
+					<div className='flex justify-center mb-6'>
+						<img
+							src='/globe.svg'
+							alt='Login Required'
+							className='w-24 h-24 opacity-80'
+						/>
+					</div>
+					<h1 className='text-4xl font-bold mb-4 text-center'>
 						Login Required
 					</h1>
-					<p className='mb-8 text-center text-lg opacity-90'>
+					<p className='mb-6 text-center text-lg opacity-90'>
 						You must be logged in to send us a message.
 					</p>
-					<div className='space-y-4'>
+					{/* Feature List */}
+					<ul className='mb-8 text-left mx-auto max-w-md space-y-2 text-base text-black/80'>
+						<li className='flex items-center gap-2'>
+							<span className='text-pink-400 text-lg'>•</span> Contact
+							our support team directly
+						</li>
+						<li className='flex items-center gap-2'>
+							<span className='text-pink-400 text-lg'>•</span> Track
+							your previous inquiries
+						</li>
+						<li className='flex items-center gap-2'>
+							<span className='text-pink-400 text-lg'>•</span> Get
+							personalized assistance
+						</li>
+					</ul>
+					<div className='space-y-4 w-full'>
 						<Button
 							onClick={() => router.push('/login')}
 							variant='primary'
@@ -92,6 +115,42 @@ const ContactPage = () => {
 						</p>
 					</div>
 				</motion.div>
+				{/* Office Locations & E-commerce Info Section */}
+				<div className='max-w-3xl w-full mt-12 bg-white bg-opacity-20 backdrop-blur-md rounded-xl p-8 shadow-lg flex flex-col md:flex-row gap-8 items-start'>
+					{/* Office Locations */}
+					<div className='flex-1'>
+						<h2 className='text-2xl font-bold mb-4 text-indigo-900'>
+							Our Offices
+						</h2>
+						<ul className='space-y-3 text-black/80'>
+							<li>
+								<span className='font-semibold'>Headquarters:</span>{' '}
+								123 Commerce Ave, New York, NY, USA
+							</li>
+							<li>
+								<span className='font-semibold'>Europe Office:</span>{' '}
+								45 Market St, London, UK
+							</li>
+							<li>
+								<span className='font-semibold'>Asia Office:</span> 88
+								Ecom Rd, Singapore
+							</li>
+						</ul>
+					</div>
+					{/* E-commerce Info */}
+					<div className='flex-1'>
+						<h2 className='text-2xl font-bold mb-4 text-pink-800'>
+							Why Shop With Us?
+						</h2>
+						<ul className='space-y-3 text-black/80'>
+							<li>✅ Fast & Secure Checkout</li>
+							<li>✅ Worldwide Shipping</li>
+							<li>✅ 24/7 Customer Support</li>
+							<li>✅ Easy Returns & Refunds</li>
+							<li>✅ Exclusive Member Discounts</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		);
 	}

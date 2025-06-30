@@ -10,32 +10,12 @@ import {
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
-type StarRatingProps = {
-	rating: number;
-};
-
-const StarRating = ({ rating }: StarRatingProps) => {
-	const stars = [];
-	for (let i = 1; i <= 5; i++) {
-		if (i <= rating) {
-			stars.push(
-				<Star key={i} className='text-yellow-400 w-5 h-5 inline' />
-			);
-		} else {
-			stars.push(
-				<StarOff key={i} className='text-yellow-400 w-5 h-5 inline' />
-			);
-		}
-	}
-	return <div className='flex gap-1'>{stars}</div>;
-};
-
 const HeroSection = () => {
-	const [timeLeft, setTimeLeft] = useState(0);
+	const [timeLeft, setTimeLeft] = useState(24 * 60 * 60 * 1000);
 
 	useEffect(() => {
 		const timer = setInterval(() => {
-			setTimeLeft(prev => (prev > 0 ? prev - 1000 : 0));
+			setTimeLeft(prev => prev - 1000);
 		}, 1000);
 
 		return () => clearInterval(timer);
@@ -51,6 +31,8 @@ const HeroSection = () => {
 			seconds % 60
 		}s`;
 	};
+
+	console.log(formatTime(timeLeft));
 
 	return (
 		<section className='min-h-screen flex flex-col-reverse md:flex-row items-center justify-between bg-gradient-to-tr from-indigo-900 via-purple-800 to-pink-700 px-4 sm:px-6 md:px-12 lg:px-24 xl:px-32 text-white relative overflow-hidden py-12'>
@@ -101,9 +83,6 @@ const HeroSection = () => {
 					with{' '}
 					<span className='text-pink-400'>Exclusive Collections</span>
 				</h1>
-				<div className='flex justify-center lg:justify-start'>
-					<StarRating rating={4} />
-				</div>
 
 				<p className='text-sm sm:text-base md:text-lg lg:text-xl opacity-90 leading-relaxed max-w-md mx-auto md:mx-0'>
 					Discover unique, handpicked products crafted for you.

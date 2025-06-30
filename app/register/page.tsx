@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation';
-import { getCurrentUser } from '../lib/actions';
+import { getCurrentUser } from '../../action/actions';
 import RegisterForm from './RegisterForm';
 
 // Force dynamic rendering since this page uses cookies

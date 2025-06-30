@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
+import { products } from '../../constants/shopProducts';
 import FilterSidebar from '../components/FilterSidebar';
 import ProductCard from '../components/products/ProductCard';
-import { products } from '../lib/shopProducts';
 
 const ShopPage = () => {
 	const [selectedCategories, setSelectedCategories] = useState<

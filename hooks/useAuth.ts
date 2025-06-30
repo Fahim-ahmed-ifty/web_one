@@ -1,7 +1,7 @@
 'use client';
 
+import { getCurrentUser } from '@/action/actions';
 import { useCallback, useEffect, useState } from 'react';
-import { getCurrentUser } from '../lib/actions';
 
 export function useAuth() {
 	const [user, setUser] = useState<any>(null);

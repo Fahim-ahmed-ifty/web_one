@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import { featuredProducts } from '../constants/featuredProducts';
 import HeroSection from './components/HeroSection';
 import FeaturedProducts from './components/products/FeaturedProducts';
-import { featuredProducts } from './lib/featuredProducts';
 
 const HomePage = () => {
 	const [selectedCategories] = useState<string[]>([]);
