@@ -5,8 +5,9 @@ export type ButtonVariant =
 	| 'secondary'
 	| 'outline'
 	| 'ghost'
-	| 'danger';
-export type ButtonSize = 'sm' | 'md' | 'lg';
+	| 'danger'
+	| 'black';
+export type ButtonSize = 'sm' | 'md' | 'lg' | 'xl';
 
 interface ButtonProps
 	extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -29,13 +30,15 @@ const variantStyles: Record<ButtonVariant, string> = {
 	outline:
 		'bg-transparent border border-pink-500 text-pink-500 hover:bg-pink-50',
 	ghost: 'bg-transparent text-black hover:bg-pink-50',
-	danger: 'bg-red-500 text-white hover:bg-red-600'
+	danger: 'bg-red-500 text-white hover:bg-red-600',
+	black: 'bg-black text-white hover:bg-gray-800'
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
 	sm: 'px-3 py-1.5 text-sm',
 	md: 'px-4 py-2 text-base',
-	lg: 'px-6 py-3 text-lg'
+	lg: 'px-6 py-3 text-lg',
+	xl: 'px-8 py-4 text-xl'
 };
 
 const Spinner = () => (

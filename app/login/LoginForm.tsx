@@ -1,7 +1,6 @@
 'use client';
 
 import { Eye, EyeOff, Lock, Mail } from 'lucide-react';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { loginUser } from '../../action/actions';
 import Button from '../components/Button';

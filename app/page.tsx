@@ -1,9 +1,13 @@
 'use client';
 
+import { testimonials } from '@/constants/testimonials';
 import { useState } from 'react';
 import { featuredProducts } from '../constants/featuredProducts';
 import HeroSection from './components/HeroSection';
+import NewsletterSignup from './components/NewsletterSignup';
 import FeaturedProducts from './components/products/FeaturedProducts';
+import PromoBanner from './components/PromoBanner';
+import Testimonial from './components/testimonial/Testimonial';
 
 const HomePage = () => {
 	const [selectedCategories] = useState<string[]>([]);
@@ -21,6 +25,9 @@ const HomePage = () => {
 		<div className='space-y-12 pb-16'>
 			<HeroSection />
 			<FeaturedProducts products={filteredProducts} />
+			<NewsletterSignup />
+			<PromoBanner />
+			<Testimonial testimonials={testimonials} />
 		</div>
 	);
 };
