@@ -53,7 +53,7 @@ const SideCategoryNavbar = () => {
 				className={`fixed top-18 left-0 w-full z-40 hidden md:block transition-all duration-300 ${
 					isMounted && isScrolled
 						? 'bg-white/70 shadow-md backdrop-blur-md border-b border-gray-200/50 '
-						: 'bg-gradient-to-r from-indigo-900/80 via-purple-800/80 to-pink-700/80 backdrop-blur-sm border-b border-white/20'
+						: 'bg-gradient-to-r from-indigo-800 via-purple-700 to-pink-600'
 				}`}
 			>
 				<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
@@ -76,10 +76,7 @@ const SideCategoryNavbar = () => {
 								<span>All Categories</span>
 							</Button>
 							{desktopCategories.map((cat, index) => (
-								<div
-									key={cat.title}
-									className='relative group shadow'
-								>
+								<div key={cat.title} className='relative group'>
 									<Button
 										variant='ghost'
 										size='sm'

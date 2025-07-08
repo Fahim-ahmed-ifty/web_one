@@ -156,15 +156,18 @@ const Footer = () => {
 						<div className='space-y-2 pt-4'>
 							<div className='flex items-center space-x-2 text-sm opacity-90'>
 								<Mail className='w-4 h-4' />
-								<span>support@nextgenshop.com</span>
+								<span>fahim.ahmed.ifty.cse@gmail.com</span>
 							</div>
 							<div className='flex items-center space-x-2 text-sm opacity-90'>
 								<Phone className='w-4 h-4' />
-								<span>+1 (555) 123-4567</span>
+								<span>+8801621943514</span>
 							</div>
 							<div className='flex items-center space-x-2 text-sm opacity-90'>
 								<MapPin className='w-4 h-4' />
-								<span>123 Fashion St, Style City</span>
+								<span>
+									House 18, Road 02, Green City Housing, Mohammadpur,
+									Dhaka-1207
+								</span>
 							</div>
 						</div>
 					</div>

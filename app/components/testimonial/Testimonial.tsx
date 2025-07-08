@@ -16,7 +16,7 @@ const Testimonial = ({ testimonials }: Props) => {
 	return (
 		<div className='md:m-12'>
 			<h2 className='flex text-2xl lg:text-4xl font-bold mb-6 text-gray-800 justify-center'>
-				Testimonials
+				Customer Feedback
 			</h2>
 			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
 				{testimonials.map(testimonial => (

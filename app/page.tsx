@@ -8,6 +8,7 @@ import NewsletterSignup from './components/NewsletterSignup';
 import FeaturedProducts from './components/products/FeaturedProducts';
 import PromoBanner from './components/PromoBanner';
 import Testimonial from './components/testimonial/Testimonial';
+import WhyShopWithUs from './components/WhyShopWithUs';
 
 const HomePage = () => {
 	const [selectedCategories] = useState<string[]>([]);
@@ -27,6 +28,7 @@ const HomePage = () => {
 			<FeaturedProducts products={filteredProducts} />
 			<NewsletterSignup />
 			<PromoBanner />
+			<WhyShopWithUs />
 			<Testimonial testimonials={testimonials} />
 		</div>
 	);
